@@ -1,0 +1,831 @@
+<!--to run: python -m http.server-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GiveWithPurpose | Give. Reuse. Impact.</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="nav-container">
+
+        <a href="#" class="logo">
+            <span class="logo-icon">♡</span>
+            <span>Give<span>With</span>Purpose</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#marketplace">Buy</a>
+            <a href="#sell">Sell</a>
+            <a href="#donate">Donate</a>
+            <a href="#volunteer">Volunteer</a>
+        </nav>
+
+        <div class="nav-actions">
+            <select id="languageSelect">
+                <option>English</option>
+                <option>ಕನ್ನಡ</option>
+                <option>हिन्दी</option>
+                <option>தமிழ்</option>
+            </select>
+
+            <button class="login-btn" onclick="openLogin()">Login</button>
+        </div>
+
+    </div>
+</header>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="hero-background-circle circle-one"></div>
+    <div class="hero-background-circle circle-two"></div>
+
+    <div class="hero-container">
+
+        <div class="hero-content">
+
+            <div class="small-badge">
+                ✦ Give more. Waste less. Impact more.
+            </div>
+
+            <h1>
+                Give what you no longer need.
+                <span>Change someone's future.</span>
+            </h1>
+
+            <p>
+                Buy pre-loved items, sell what you no longer use,
+                or donate directly to people and organisations that need them.
+            </p>
+
+            <div class="hero-buttons">
+                <button class="primary-btn" onclick="openDonation()">
+                    Donate Now →
+                </button>
+
+                <button class="secondary-btn" onclick="goToSection('marketplace')">
+                    Explore Marketplace
+                </button>
+            </div>
+
+            <div class="hero-trust">
+                <div class="avatar-stack">
+                    <div>A</div>
+                    <div>R</div>
+                    <div>S</div>
+                    <div>M</div>
+                </div>
+
+                <div>
+                    <strong>1,200+ people</strong>
+                    <small>are already creating impact</small>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- HERO VISUAL -->
+        <div class="hero-visual">
+
+            <div class="floating-card card-top">
+                <span>🌱</span>
+                <div>
+                    <strong>12 items reused</strong>
+                    <small>this week</small>
+                </div>
+            </div>
+
+            <div class="main-visual-card">
+
+                <div class="visual-glow"></div>
+
+                <div class="item-book">
+                    <span>📚</span>
+                </div>
+
+                <div class="item-shirt">
+                    <span>👕</span>
+                </div>
+
+                <div class="heart-circle">
+                    ♥
+                </div>
+
+                <div class="visual-label">
+                    <strong>One small act.</strong>
+                    <span>A meaningful impact.</span>
+                </div>
+
+            </div>
+
+            <div class="floating-card card-bottom">
+                <span class="location-icon">📍</span>
+                <div>
+                    <strong>NGO near you</strong>
+                    <small>Needs 45 books</small>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- STATS -->
+    <div class="hero-stats">
+
+        <div class="stat">
+            <strong>1,248+</strong>
+            <span>Items donated</span>
+        </div>
+
+        <div class="stat">
+            <strong>32</strong>
+            <span>Verified NGOs</span>
+        </div>
+
+        <div class="stat">
+            <strong>186</strong>
+            <span>Successful deliveries</span>
+        </div>
+
+        <div class="stat">
+            <strong>4,920+</strong>
+            <span>People impacted</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PURPOSE SECTION -->
+<section class="section purpose-section">
+
+    <div class="section-heading centered">
+        <span class="eyebrow">ONE PLATFORM</span>
+        <h2>There are many ways to make an impact.</h2>
+        <p>
+            Whether you want to buy, sell, donate or volunteer,
+            GiveWithPurpose connects you to the right people.
+        </p>
+    </div>
+
+
+    <div class="purpose-grid">
+
+        <div class="purpose-card green-card">
+            <div class="purpose-icon">🛍️</div>
+            <span>01</span>
+            <h3>Buy Pre-Loved</h3>
+            <p>
+                Find useful books and clothes at affordable prices
+                while keeping good items in circulation.
+            </p>
+            <a href="#marketplace">Explore items →</a>
+        </div>
+
+        <div class="purpose-card pink-card">
+            <div class="purpose-icon">🏷️</div>
+            <span>02</span>
+            <h3>Sell Responsibly</h3>
+            <p>
+                Give your unused belongings another life and
+                earn money from them.
+            </p>
+            <a href="#sell">Sell an item →</a>
+        </div>
+
+        <div class="purpose-card orange-card">
+            <div class="purpose-icon">💚</div>
+            <span>03</span>
+            <h3>Donate With Purpose</h3>
+            <p>
+                See exactly what nearby NGOs and communities
+                currently need before donating.
+            </p>
+            <a href="#donate">Find an NGO →</a>
+        </div>
+
+        <div class="purpose-card purple-card">
+            <div class="purpose-icon">🚲</div>
+            <span>04</span>
+            <h3>Become a Volunteer</h3>
+            <p>
+                Help transport donations from donors to organisations
+                that need them.
+            </p>
+            <a href="#volunteer">Volunteer →</a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MARKETPLACE -->
+<section class="section marketplace-section" id="marketplace">
+
+    <div class="section-heading-row">
+
+        <div>
+            <span class="eyebrow">THRIFT MARKET</span>
+            <h2>Good things deserve another life.</h2>
+            <p>Discover affordable books and clothes from verified sellers.</p>
+        </div>
+
+        <button class="outline-btn" onclick="goToSection('sell')">
+            Sell an item +
+        </button>
+
+    </div>
+
+
+    <div class="filter-row">
+
+        <button class="filter-btn active" onclick="filterProducts('all', this)">
+            All Items
+        </button>
+
+        <button class="filter-btn" onclick="filterProducts('book', this)">
+            📚 Books
+        </button>
+
+        <button class="filter-btn" onclick="filterProducts('clothes', this)">
+            👕 Clothes
+        </button>
+
+    </div>
+
+
+    <div class="product-grid" id="products"></div>
+
+</section>
+
+
+<!-- DONATION -->
+<section class="section donation-section" id="donate">
+
+    <div class="donation-wrapper">
+
+        <div class="donation-intro">
+
+            <span class="eyebrow">DONATE SMARTER</span>
+
+            <h2>
+                Don't just donate.
+                <span>Donate where it matters.</span>
+            </h2>
+
+            <p>
+                See what organisations near you actually need,
+                choose what you want to give, and track your donation
+                until it reaches its destination.
+            </p>
+
+            <div class="location-box">
+                <span>📍</span>
+                <div>
+                    <small>Your location</small>
+                    <strong>Bengaluru, Karnataka</strong>
+                </div>
+                <button>Change</button>
+            </div>
+
+        </div>
+
+
+        <div class="ngo-list">
+
+            <div class="ngo-card">
+
+                <div class="ngo-top">
+                    <div class="ngo-logo">A</div>
+
+                    <div>
+                        <h3>Akshaya Patra Foundation</h3>
+                        <span class="verified">✓ Verified organisation</span>
+                    </div>
+                </div>
+
+                <p>Education & community support</p>
+
+                <div class="need-box">
+                    <span>Currently needed</span>
+
+                    <div class="needs">
+                        <b>📚 80 Books</b>
+                        <b>👕 35 Clothes</b>
+                    </div>
+                </div>
+
+                <div class="ngo-bottom">
+                    <span>📍 4.2 km away</span>
+                    <button onclick="openDonation()">Donate</button>
+                </div>
+
+            </div>
+
+
+            <div class="ngo-card">
+
+                <div class="ngo-top">
+                    <div class="ngo-logo pink-logo">S</div>
+
+                    <div>
+                        <h3>Sakthi Charitable Trust</h3>
+                        <span class="verified">✓ Verified organisation</span>
+                    </div>
+                </div>
+
+                <p>Children & rural welfare</p>
+
+                <div class="need-box">
+                    <span>Currently needed</span>
+
+                    <div class="needs">
+                        <b>📚 120 Books</b>
+                        <b>👕 50 Clothes</b>
+                    </div>
+                </div>
+
+                <div class="ngo-bottom">
+                    <span>📍 7.8 km away</span>
+                    <button onclick="openDonation()">Donate</button>
+                </div>
+
+            </div>
+
+
+            <div class="ngo-card">
+
+                <div class="ngo-top">
+                    <div class="ngo-logo orange-logo">R</div>
+
+                    <div>
+                        <h3>Rural Development Trust</h3>
+                        <span class="verified">✓ Verified organisation</span>
+                    </div>
+                </div>
+
+                <p>Rural education & development</p>
+
+                <div class="need-box">
+                    <span>Currently needed</span>
+
+                    <div class="needs">
+                        <b>📚 65 Books</b>
+                        <b>👕 20 Clothes</b>
+                    </div>
+                </div>
+
+                <div class="ngo-bottom">
+                    <span>📍 12.1 km away</span>
+                    <button onclick="openDonation()">Donate</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TRACKING -->
+<section class="section tracking-section">
+
+    <div class="section-heading centered">
+
+        <span class="eyebrow">FULL TRANSPARENCY</span>
+
+        <h2>Know where your donation goes.</h2>
+
+        <p>
+            Every donation can be tracked from pickup to delivery.
+        </p>
+
+    </div>
+
+
+    <div class="tracking-card">
+
+        <div class="tracking-header">
+            <div>
+                <span>DONATION #GWP1048</span>
+                <h3>12 Books → Rural Development Trust</h3>
+            </div>
+
+            <span class="status-pill">● Delivered</span>
+        </div>
+
+
+        <div class="timeline">
+
+            <div class="timeline-step completed">
+                <div class="timeline-icon">✓</div>
+
+                <div>
+                    <strong>Donation created</strong>
+                    <small>Your donation request was accepted.</small>
+                </div>
+            </div>
+
+
+            <div class="timeline-line"></div>
+
+
+            <div class="timeline-step completed">
+                <div class="timeline-icon">✓</div>
+
+                <div>
+                    <strong>Volunteer assigned</strong>
+                    <small>A verified volunteer is transporting it.</small>
+                </div>
+            </div>
+
+
+            <div class="timeline-line"></div>
+
+
+            <div class="timeline-step completed">
+                <div class="timeline-icon">✓</div>
+
+                <div>
+                    <strong>OTP verified</strong>
+                    <small>Delivery was confirmed securely.</small>
+                </div>
+            </div>
+
+
+            <div class="timeline-line"></div>
+
+
+            <div class="timeline-step completed">
+                <div class="timeline-icon">✓</div>
+
+                <div>
+                    <strong>Proof uploaded</strong>
+                    <small>Photo/video proof received.</small>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- IMPACT -->
+<section class="impact-section">
+
+    <div class="impact-content">
+
+        <span class="eyebrow">YOUR IMPACT</span>
+
+        <h2>Small actions add up.</h2>
+
+        <p>
+            Every item you give, sell, buy or deliver helps
+            build a more circular and caring community.
+        </p>
+
+        <button class="white-btn" onclick="openLogin()">
+            Start making an impact →
+        </button>
+
+    </div>
+
+
+    <div class="impact-dashboard">
+
+        <div class="impact-number">
+            <span>Your impact points</span>
+            <strong>1,280</strong>
+        </div>
+
+        <div class="impact-mini-grid">
+
+            <div>
+                <span>📚</span>
+                <strong>34</strong>
+                <small>Books donated</small>
+            </div>
+
+            <div>
+                <span>👕</span>
+                <strong>18</strong>
+                <small>Clothes donated</small>
+            </div>
+
+            <div>
+                <span>🚲</span>
+                <strong>7</strong>
+                <small>Deliveries helped</small>
+            </div>
+
+            <div>
+                <span>💚</span>
+                <strong>59</strong>
+                <small>People impacted</small>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- VOLUNTEER -->
+<section class="section volunteer-section" id="volunteer">
+
+    <div class="volunteer-card">
+
+        <div class="volunteer-image">
+            🚲
+        </div>
+
+        <div class="volunteer-content">
+
+            <span class="eyebrow">MOVE KINDNESS</span>
+
+            <h2>Got some time? Become someone's connection.</h2>
+
+            <p>
+                Help transport donations from people who want to give
+                to organisations that need them.
+            </p>
+
+            <div class="volunteer-points">
+
+                <div>
+                    <span>✓</span>
+                    Choose deliveries near you
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Receive delivery details
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Verify delivery with OTP
+                </div>
+
+            </div>
+
+            <button class="primary-btn" onclick="joinVolunteer()">
+                Become a Volunteer →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SAFETY -->
+<section class="section safety-section">
+
+    <div class="section-heading centered">
+
+        <span class="eyebrow">BUILT ON TRUST</span>
+
+        <h2>Giving should feel safe.</h2>
+
+        <p>
+            We are designing every step around transparency and verification.
+        </p>
+
+    </div>
+
+
+    <div class="safety-grid">
+
+        <div class="safety-card">
+            <span>🔐</span>
+            <h3>User Verification</h3>
+            <p>Phone and email verification helps keep accounts trustworthy.</p>
+        </div>
+
+        <div class="safety-card">
+            <span>✓</span>
+            <h3>NGO Verification</h3>
+            <p>Organisations can be verified using official documentation.</p>
+        </div>
+
+        <div class="safety-card">
+            <span>🤖</span>
+            <h3>AI Moderation</h3>
+            <p>Uploaded content can be checked for unsafe or inappropriate material.</p>
+        </div>
+
+        <div class="safety-card">
+            <span>📦</span>
+            <h3>Secure Delivery</h3>
+            <p>OTP confirmation and proof help confirm successful deliveries.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SELL -->
+<section class="section sell-section" id="sell">
+
+    <div class="sell-container">
+
+        <div>
+            <span class="eyebrow">SELL & REUSE</span>
+
+            <h2>
+                Your old things might be
+                <span>someone else's treasure.</span>
+            </h2>
+
+            <p>
+                List books and clothes you no longer need.
+                Earn money while giving useful items another chance.
+            </p>
+        </div>
+
+        <button class="primary-btn" onclick="openSell()">
+            List an Item +
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="footer-main">
+
+        <div class="footer-brand">
+
+            <a href="#" class="logo">
+                <span class="logo-icon">♡</span>
+                <span>Give<span>With</span>Purpose</span>
+            </a>
+
+            <p>
+                A community marketplace for giving,
+                reusing and creating meaningful impact.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <div>
+                <h4>Explore</h4>
+                <a href="#marketplace">Marketplace</a>
+                <a href="#donate">Donate</a>
+                <a href="#sell">Sell</a>
+                <a href="#volunteer">Volunteer</a>
+            </div>
+
+            <div>
+                <h4>Platform</h4>
+                <a href="#">About us</a>
+                <a href="#">How it works</a>
+                <a href="#">Safety</a>
+                <a href="#">Contact</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+        <span>© 2026 GiveWithPurpose</span>
+        <span>Made with purpose ♡</span>
+    </div>
+
+</footer>
+
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+    <div class="modal-box">
+        <button class="close-btn" onclick="closeModal('loginModal')">×</button>
+        <div class="modal-icon">♡</div>
+        <h2>Join GiveWithPurpose</h2>
+        <p>Create an account to donate, buy and sell.</p>
+
+        <form id="signupForm">
+            <input type="text" id="name" placeholder="Your name" required>
+            <input type="email" id="email" placeholder="Email address" required>
+            <input type="password" id="password" placeholder="Password (min 6 characters)" required>
+            <input type="text" id="city" placeholder="City" required>
+            <button type="submit" class="primary-btn full-btn">Sign up →</button>
+        </form>
+
+        <form id="loginForm">
+            <h3>Already have an account?</h3>
+            <input type="email" id="loginEmail" placeholder="Email" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button type="submit" class="primary-btn full-btn">Log in →</button>
+            <p id="loginMsg"></p>
+        </form>
+    </div>
+</div>
+
+
+<!-- DONATION MODAL -->
+<div class="modal" id="donationModal">
+
+    <div class="modal-box">
+
+        <button class="close-btn" onclick="closeModal('donationModal')">×</button>
+
+        <div class="modal-icon green-icon">💚</div>
+
+        <h2>Make a donation</h2>
+
+        <p>Tell us what you would like to donate.</p>
+
+        <select id="donationType">
+            <option>Books</option>
+            <option>Clothes</option>
+            <option>Books & Clothes</option>
+        </select>
+
+        <input type="number" id="donationQuantity" placeholder="Quantity">
+
+        <select id="donationDelivery">
+            <option>Volunteer pickup</option>
+            <option>I will deliver</option>
+        </select>
+
+        <button class="primary-btn full-btn" onclick="submitDonation()">
+            Continue with donation →
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- SELL MODAL -->
+<div class="modal" id="sellModal">
+
+    <div class="modal-box">
+
+        <button class="close-btn" onclick="closeModal('sellModal')">×</button>
+
+        <div class="modal-icon">🏷️</div>
+
+        <h2>List an item</h2>
+
+        <p>Give your unused item a new owner.</p>
+
+        <input id="sellTitle" type="text" placeholder="Item name">
+
+        <select id="sellCategory">
+            <option>Book</option>
+            <option>Clothes</option>
+        </select>
+
+        <input id="sellPrice" type="number" placeholder="Price in ₹">
+        <input type="file" id="sellPhoto" accept="image/*">
+        <button class="primary-btn full-btn" onclick="submitSell()">
+            List item →
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+<script type="module" src="signup.js"></script>
+<script type="module" src="app.js"></script>
+
+</body>
+</html>
