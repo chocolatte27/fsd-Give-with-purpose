@@ -42,6 +42,7 @@
             </select>
 
             <button class="login-btn" onclick="openLogin()">Login</button>
+            <button class="profile-btn" id="profileBtn" style="display:none" onclick="openProfile()">👤 Profile</button>
         </div>
 
     </div>
@@ -822,10 +823,18 @@
 
 </div>
 
+<!-- PROFILE MODAL -->
+ <div class="modal" id="profileModal">
+  <div class="modal-box profile-box">
+    <button class="close-btn" onclick="closeModal('profileModal')">×</button>
+    <div id="profileBody">Loading...</div>
+  </div>
+</div>
 
 <script src="script.js"></script>
 <script type="module" src="signup.js"></script>
 <script type="module" src="app.js"></script>
+<script type="module" src="profile.js"></script>
 
 </body>
 </html>

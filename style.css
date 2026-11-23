@@ -1700,3 +1700,8 @@ footer {
         gap: 8px;
     }
 }
+.profile-btn { padding: 8px 14px; border-radius: 999px; border: 1px solid #ccc; background: #fff; cursor: pointer; }
+.profile-box { max-height: 85vh; overflow-y: auto; text-align: left; }
+.profile-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 16px 0; text-align: center; }
+.profile-stats strong { display: block; font-size: 1.4rem; }
+.profile-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; }
