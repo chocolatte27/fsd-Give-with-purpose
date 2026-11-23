@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | GiveWithPurpose</title>
+    <link rel="stylesheet" href="product-details.css">
+</head>
+
+<body>
+
+    <header class="details-header">
+        <a href="index.html" class="back-link">← Back to Marketplace</a>
+        <h2>GiveWithPurpose</h2>
+    </header>
+
+    <main class="product-container">
+
+        <section class="product-image-section">
+            <div class="product-image" id="productImage">
+                📘
+            </div>
+            <p class="image-caption">Give pre-loved items a new story.</p>
+        </section>
+
+        <section class="product-info">
+
+            <p class="category" id="productCategory"></p>
+
+            <h1 id="productName">Product Name</h1>
+
+            <div class="rating" id="productRating">
+                No ratings yet
+            </div>
+
+            <h2 class="price" id="productPrice"></h2>
+
+            <div class="divider"></div>
+
+            <h3>About this item</h3>
+            <p id="productDescription">
+                No description provided by the seller yet.
+            </p>
+
+            <div class="condition-box">
+                <strong>Condition:</strong>
+                <span id="productCondition">Not specified</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <h3>Seller information</h3>
+
+            <div class="seller-box">
+                <div class="seller-avatar" id="sellerInitial">P</div>
+
+                <div>
+                    <strong id="sellerName">Seller</strong>
+                    <p id="sellerTransactions">0 successful transactions</p>
+                </div>
+            </div>
+
+           <div class="product-actions">
+    <button class="buy-btn" id="buyButton">
+        Buy Now
+    </button>
+
+   
+
+    <button class="contact-btn" id="contactButton">
+        Contact Seller
+    </button>
+</div>
+</div>
+
+        </section>
+
+    </main>
+
+    <section class="reviews-section">
+        <h2>Customer Reviews</h2>
+        <div id="reviewsContainer">
+            <p>No reviews yet. Be the first to review this item!</p>
+        </div>
+    </section>
+<div class="review-form">
+    <h3>Write a Review</h3>
+
+    <select id="reviewRating">
+        <option value="5">★★★★★ - Excellent</option>
+        <option value="4">★★★★ - Good</option>
+        <option value="3">★★★ - Average</option>
+        <option value="2">★★ - Poor</option>
+        <option value="1">★ - Very Poor</option>
+    </select>
+
+    <textarea id="reviewText"
+        placeholder="Share your experience..."></textarea>
+
+    <button id="submitReviewButton">Submit Review</button>
+    <p id="reviewMessage"></p>
+</div>
+    <script type="module">
+    import { auth, db } from "./firebase.js";
+    import {
+        collection,
+        addDoc,
+        getDocs,
+        serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
+        const productData = sessionStorage.getItem("selectedProduct");
+
+        if (!productData) {
+            document.body.innerHTML = `
+                <h2>Product not found</h2>
+                <a href="index.html">Return to marketplace</a>
+            `;
+        } else {
+
+            const product = JSON.parse(productData);
+
+            const productImage = document.getElementById("productImage");
+
+if (product.photo) {
+    productImage.innerHTML = `<img src="${product.photo}" alt="${product.name}">`;
+} else {
+    productImage.textContent = product.icon || "📦";
+}
+            document.getElementById("productCategory").textContent =
+                product.category || "Item";
+
+            document.getElementById("productName").textContent =
+                product.name;
+
+            document.getElementById("productPrice").textContent =
+                "₹" + product.price;
+
+            document.getElementById("productDescription").textContent =
+                product.description || "No description provided by the seller yet.";
+
+            document.getElementById("productCondition").textContent =
+                product.condition || "Not specified";
+
+            document.getElementById("sellerName").textContent =
+                product.seller;
+
+            document.getElementById("sellerInitial").textContent =
+                product.seller.charAt(0).toUpperCase();
+
+            document.getElementById("sellerTransactions").textContent =
+                (product.transactions || 0) + " successful transactions";
+
+            const reviews = product.reviews || [];
+
+            document.getElementById("productRating").textContent =
+                reviews.length > 0
+                ? "★ " + (
+                    reviews.reduce((sum, review) => sum + review.rating, 0) /
+                    reviews.length
+                  ).toFixed(1) + " / 5 (" + reviews.length + " reviews)"
+                : "No ratings yet";
+
+            const reviewsContainer =
+                document.getElementById("reviewsContainer");
+
+            if (reviews.length > 0) {
+                reviewsContainer.innerHTML = reviews.map(review => `
+                    <div class="review-card">
+                        <strong>${review.name}</strong>
+                        <p>★ ${review.rating} / 5</p>
+                        <p></p>
+                    </div>
+                `).join("");
+
+                reviews.forEach((review, index) => {
+                    reviewsContainer.children[index]
+                        .lastElementChild.textContent = review.comment;
+                });
+            }
+
+            document.getElementById("contactButton")
+                .addEventListener("click", () => {
+                    alert("Seller contact functionality will be added next.");
+                });
+                document.getElementById("buyButton")
+    .addEventListener("click", () => {
+        alert("Buy Now functionality will be added next!");
+    });// Load existing reviews
+async function loadReviews() {
+    
+
+    const reviewRef = collection(
+    db, "productReviews", product.id || product.name, "reviews"
+);
+    const snapshot = await getDocs(reviewRef);
+
+    const reviewsContainer = document.getElementById("reviewsContainer");
+    reviewsContainer.innerHTML = "";
+
+    let total = 0;
+
+    snapshot.forEach((doc) => {
+        const review = doc.data();
+        total += Number(review.rating);
+
+        const card = document.createElement("div");
+        card.className = "review-card";
+
+        const name = document.createElement("strong");
+        name.textContent = review.name;
+
+        const rating = document.createElement("p");
+        rating.textContent = "★ " + review.rating + " / 5";
+
+        const comment = document.createElement("p");
+        comment.textContent = review.comment;
+
+        card.append(name, rating, comment);
+        reviewsContainer.appendChild(card);
+    });
+
+    document.getElementById("productRating").textContent =
+        snapshot.size
+            ? "★ " + (total / snapshot.size).toFixed(1) +
+              " / 5 (" + snapshot.size + " reviews)"
+            : "No ratings yet";
+
+    if (snapshot.empty) {
+        reviewsContainer.textContent = "No reviews yet. Be the first to review this item!";
+    }
+}
+
+// Submit a review
+document.getElementById("submitReviewButton")
+    .addEventListener("click", async () => {
+        const user = auth.currentUser;
+
+        if (!user) {
+            alert("Please log in to submit a review.");
+            return;
+        }
+
+        
+
+        const rating = Number(document.getElementById("reviewRating").value);
+        const comment = document.getElementById("reviewText").value.trim();
+
+        if (!comment) {
+            alert("Please write a review.");
+            return;
+        }
+
+        try {
+            await addDoc(
+                collection(db, "productReviews", product.id || product.name, "reviews"),
+                {
+                    name: user.displayName || user.email,
+                    userId: user.uid,
+                    rating,
+                    comment,
+                    createdAt: serverTimestamp()
+                }
+            );
+
+            document.getElementById("reviewText").value = "";
+            alert("Review submitted!");
+            loadReviews();
+
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+
+loadReviews();
+        }
+    </script>
+
+</body>
+</html>
+
