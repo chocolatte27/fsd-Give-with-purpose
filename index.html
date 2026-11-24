@@ -751,6 +751,12 @@
             <h3>Already have an account?</h3>
             <input type="email" id="loginEmail" placeholder="Email" required>
             <input type="password" id="loginPassword" placeholder="Password" required>
+            <p style="text-align: right; margin: 5px 0 12px;">
+    <a href="#" onclick="resetPassword(); return false;"
+       style="color: #245c43; font-size: 13px;">
+        Forgot Password?
+    </a>
+</p>
             <button type="submit" class="primary-btn full-btn">Log in →</button>
             <p id="loginMsg"></p>
         </form>
@@ -806,15 +812,27 @@
 
         <p>Give your unused item a new owner.</p>
 
-        <input id="sellTitle" type="text" placeholder="Item name">
+       <input id="sellTitle" type="text" placeholder="Item name">
 
-        <select id="sellCategory">
-            <option>Book</option>
-            <option>Clothes</option>
-        </select>
+<select id="sellCategory">
+    <option>Book</option>
+    <option>Clothes</option>
+</select>
 
-        <input id="sellPrice" type="number" placeholder="Price in ₹">
-        <input type="file" id="sellPhoto" accept="image/*">
+<input id="sellPrice" type="number" placeholder="Price in ₹">
+
+<textarea id="sellDescription"
+    placeholder="Describe your item"></textarea>
+
+<select id="sellCondition">
+    <option value="">Select condition</option>
+    <option value="New">New</option>
+    <option value="Like New">Like New</option>
+    <option value="Good">Good</option>
+    <option value="Fair">Fair</option>
+</select>
+
+<input type="file" id="sellPhoto" accept="image/*">
         <button class="primary-btn full-btn" onclick="submitSell()">
             List item →
         </button>

@@ -6,27 +6,28 @@
 const products = [
 
     {
-        name: "Atomic Habits",
+        name: "Atomik Habits",
         category: "book",
-        price: 250,
+        price: 100,
         seller: "Priya",
         transactions: 18,
         icon: "📘"
     },
 
     {
-        name: "The Psychology of Money",
+        name: "11th Maths Textbook",
         category: "book",
-        price: 180,
+        price: 80,
         seller: "Arjun",
         transactions: 31,
-        icon: "📕"
+        photo:"images/maths-book.png"
+        
     },
 
     {
-        name: "Harry Potter Collection",
+        name: "Potter Collection",
         category: "book",
-        price: 450,
+        price: 300,
         seller: "Manya",
         transactions: 12,
         icon: "📚"
@@ -35,7 +36,7 @@ const products = [
     {
         name: "Cotton T-Shirt",
         category: "clothes",
-        price: 200,
+        price: 100,
         seller: "Riya",
         transactions: 9,
         icon: "👕"
@@ -44,16 +45,17 @@ const products = [
     {
         name: "Denim Jacket",
         category: "clothes",
-        price: 500,
+        price: 300,
         seller: "Rahul",
         transactions: 24,
-        icon: "🧥"
+        
+        photo:"images/denim-jacket.png"
     },
 
     {
         name: "Casual Dress",
         category: "clothes",
-        price: 350,
+        price: 250,
         seller: "Asha",
         transactions: 16,
         icon: "👗"
@@ -152,6 +154,7 @@ function filterProducts(category, button) {
 }
 
 
+
 /* =========================
    PRODUCT VIEW
 ========================= */
@@ -162,12 +165,14 @@ function viewProduct(name) {
 
     if (!product) return;
 
-    alert(
-        `${product.name}\n\n` +
-        `Price: ₹${product.price}\n` +
-        `Seller: ${product.seller}\n\n` +
-        `This is a demo marketplace.`
+    // Save selected product details
+    sessionStorage.setItem(
+        "selectedProduct",
+        JSON.stringify(product)
     );
+
+    // Open product details page
+    window.location.href = "product-details.html";
 }
 
 

@@ -1,5 +1,10 @@
 import { auth, db } from "./firebase.js";
-import { signInWithEmailAndPassword, signOut, onAuthStateChanged }
+import {
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+    sendPasswordResetEmail
+}
   from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
 import { collection, addDoc, getDocs, getDoc, doc, query, where,
          updateDoc, increment, serverTimestamp }
@@ -63,12 +68,15 @@ window.submitSell = async () => {
   const title = document.getElementById("sellTitle").value.trim();
   const category = document.getElementById("sellCategory").value.toLowerCase();
   const price = Number(document.getElementById("sellPrice").value);
-  if (!title || !price) return alert("Fill all fields");
+  const description = document.getElementById("sellDescription").value.trim();
+const condition = document.getElementById("sellCondition").value;
+  if (!title || !price || !description || !condition)
+    return alert("Please fill all fields");
   const file = document.getElementById("sellPhoto").files[0];
   const photo = file ? await compressImage(file) : null;
   try {
     await addDoc(collection(db, "listings"), {
-      title, category, price, type: "sell",
+      title, category, price,description,condition, type: "sell",
       photo,
       sellerUid: currentUser.uid, sellerName: userData.name,
       city: userData.city, status: "available",
@@ -141,13 +149,35 @@ async function loadListings() {
     where("status", "==", "available")));
   snap.docs.forEach(d => {
     const l = d.data();
-    products.push({
-      name: l.title, category: l.category, price: l.price,
-      photo: l.photo || null,
-      seller: l.sellerName, transactions: 0,
-      icon: l.category === "book" ? "📘" : "👕"
-    });
+   products.push({
+    id: d.id,
+    name: l.title,
+    category: l.category,
+    price: l.price,
+    photo: l.photo || null,
+    seller: l.sellerName,
+    transactions: l.transactions || 0,
+    description: l.description || "No description provided yet.",
+    condition: l.condition || "Not specified",
+    reviews: l.reviews || [],
+    icon: l.category === "book" ? "📘" : "👕"
+});
   });
   displayProducts(products);
 }
 loadListings();
+window.resetPassword = async () => {
+    const email = document.getElementById("loginEmail").value.trim();
+
+    if (!email) {
+        alert("Please enter your registered email first.");
+        return;
+    }
+
+    try {
+        await sendPasswordResetEmail(auth, email);
+        alert("Password reset email sent! Check your inbox.");
+    } catch (error) {
+        alert(error.message);
+    }
+};
